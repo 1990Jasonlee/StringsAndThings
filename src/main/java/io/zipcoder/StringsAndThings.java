@@ -1,7 +1,6 @@
 package io.zipcoder;
-
-
-import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author tariq
@@ -16,16 +15,26 @@ public class StringsAndThings {
      * countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input) {
+        String[] splinted = input.split(" ");
         int count = 0;
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == 'y' || input.charAt(i) == 'z') { // look for y or z
-                if (i < input.length() - 1 && !Character.isLetter(input.charAt(i + 1))) //
-                    count++;
+        for (int i = 0; i < splinted.length; i++) {
+            if (splinted[i].charAt(splinted[i].length() -1 ) == 'y' ||
+                    splinted[i].charAt(splinted[i].length() -1 ) == 'z'){
+                count++;
             }
         }
         return count;
     }
+    //split words separated by " " into different array
+    //for loop to check if words end in y or z, count
 
+/*String split[] = input.split(" ");
+    int count = 0;
+    Pattern cYZ = Pattern.compile("[y-z]{1}");
+    Matcher yZ = cYZ.matcher(input);
+        while (yZ.find()) {
+        count++;*/
+//not working
     /**
      * Given two strings, base and remove, return a version of the base string where all instances of the remove string have
      * been removed (not case sensitive). You may assume that the remove string is length 1 or more.
@@ -39,6 +48,7 @@ public class StringsAndThings {
         return base.replaceAll(remove, "");
     }
 
+
     /**
      * Given a string, return true if the number of appearances of "is" anywhere in the string is equal
      * to the number of appearances of "not" anywhere in the string (case sensitive)
@@ -48,8 +58,18 @@ public class StringsAndThings {
      * containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input) {
-        return null;
+        boolean isAndNot;
+        int isCount = (input.split("is", -1).length);
+        int notCount = (input.split("not", -1).length);
+        if (isCount == notCount){
+            isAndNot = true;
+        } else isAndNot = false;
+        return isAndNot;
     }
+        //find is
+        //find not
+        //compare and return true or false based on quantity matching
+
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
@@ -59,8 +79,17 @@ public class StringsAndThings {
      * gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input) {
-        return null;
+
+        String str = input;
+        for (int i = 0; i < input.length(); i++){
+            if (str.charAt(i) == 'g' && str.charAt(i + 1) == 'g'){
+                return true;
+            }
+        }
+        return false;
     }
+    //for loop to go through string
+    //check if g is next to another g
 
 
     /**
@@ -76,7 +105,9 @@ public class StringsAndThings {
 
         for (int i = 0; i < input.length() - 3; i++) {
             if (str.charAt(i) == str.charAt(i + 1) && str.charAt(i + 1) == str.charAt(i + 2)) {
-            count++; // tests if 1st character matches 2nd and 2nd match 3rd
+            count++;
+            //only look if 3 in a row
+            // tests if 1st character matches 2nd and 2nd match 3rd
         }
     }
     return count;
