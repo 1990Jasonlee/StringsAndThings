@@ -15,11 +15,11 @@ public class StringsAndThings {
      * countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input) {
-        String[] splinted = input.split(" ");
+        String[] splitted = input.split(" ");
         int count = 0;
-        for (int i = 0; i < splinted.length; i++) {
-            if (splinted[i].charAt(splinted[i].length() -1 ) == 'y' ||
-                    splinted[i].charAt(splinted[i].length() -1 ) == 'z'){
+        for (int i = 0; i < splitted.length; i++) {
+            if (splitted[i].charAt(splitted[i].length() -1 ) == 'y' ||
+                    splitted[i].charAt(splitted[i].length() -1 ) == 'z'){
                 count++;
             }
         }
